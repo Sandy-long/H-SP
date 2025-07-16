@@ -372,6 +372,68 @@
       height: 100%;
     }
     
+    /* 每日计划区域 */
+    .daily-plan-box {
+      background: linear-gradient(to right, #f0f9ff, #e6f7ff);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 25px 0;
+      border: 1px solid #b3e0ff;
+    }
+    .daily-plan-header {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .daily-plan-header i {
+      margin-right: 10px;
+      font-size: 24px;
+    }
+    .daily-exercise-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 15px;
+      background: white;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .exercise-type {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+      border-radius: 50%;
+      margin-right: 12px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .aerobic {
+      background: linear-gradient(to right, #36d1dc, #5b86e5);
+      color: white;
+    }
+    .strength {
+      background: linear-gradient(to right, #ff8c00, #ff4500);
+      color: white;
+    }
+    .flexibility {
+      background: linear-gradient(to right, #9c27b0, #673ab7);
+      color: white;
+    }
+    .daily-total {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+      margin-top: 20px;
+      background: #3a7bd5;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+    }
+    
     /* 响应式调整 */
     @media(max-width: 576px) {
       .setting-row {
@@ -410,8 +472,6 @@
           <!-- 将通过JS动态生成 -->
         </ul>
       </div>
-      
-    
     </div>
 
     <!-- 设置区 -->
@@ -497,20 +557,23 @@
           <div>
             <ul id="exerciseSummary">
               <!-- 将通过JS动态生成 -->
-            </ul>
+            
+			
+			</ul>
 			 <div class="calculation-info">
           <!-- 添加的科学运动建议 -->
-      
+      <br>
         <strong>科学运动建议：</strong> 世界卫生组织指南2020<br>💪 成年人应保持每周150-300分钟中等强度有氧运动
 或75-150分钟高强度有氧运动 + 每周2次力量训练
 <br>⏳ 每次时长30-60分钟为最佳（超短训练10-15分钟×多组次亦有效）
 <br>📅 理想频率每周3-5天，建议间隔休息不超过48小时
-<br>🧒 儿童青少年需每天≥60分钟中高强度活动
+<br>🧒 儿童青少年需每天≥60分钟中高强度活动<br>
      
         </ul>
         <br><strong>研究表明:</strong> 坚持12周规律运动可将心血管疾病风险降低27%，认知障碍风险降低30%
-      </div>
+      </div><br>
     </div>
+			
           </div>
         </div>
       </div>
@@ -520,7 +583,6 @@
   <script>
     // 运动数据库
     const exerciseDatabase = {
-      // 有氧运动类
       aerobic: [
         { 
           id: "walking",
@@ -554,7 +616,7 @@
           name: "游泳", 
           caloriePerMin: 7.5,
           intensity: "moderate-high",
-          suitableAges: ["3-6", "7-12", "13-18", "19-45", "46-65", "65+"],
+          suitableAges: ["3-6", "7-12", "13-18", "极速体育9-45", "46-65", "65+"],
           benefits: ["全身性运动", "关节零压力", "心肺能力提升"],
           tips: "学习正确的呼吸技巧，分泳姿练习。"
         },
@@ -566,10 +628,35 @@
           suitableAges: ["7-12", "13-18", "19-45"],
           benefits: ["高燃脂效率", "协调性训练"],
           tips: "保持直背，双脚轻跳减少冲击。"
+        },
+        {
+          id: "taekwondo",
+          name: "跆拳道",
+          caloriePer极速体育Min: 8,
+          intensity: "moderate-high",
+          suitableAges: ["7-12", "13-18", "19-45"],
+          benefits: ["提升爆发力", "增强灵活性", "训练纪律性"],
+          tips: "学习标准动作，注意热身，避免拉伤。"
+        },
+        {
+          id: "badminton",
+          name: "羽毛球",
+          caloriePerMin: 7,
+          intensity: "moderate-high",
+          suitableAges: ["7-12", "13-18", "19-45", "46-65"],
+          benefits: ["提升反应速度", "协调性好", "心肺耐力提升"],
+          tips: "注意脚步移动和握拍姿势，打前充分热身。"
+        },
+        {
+          id: "slow_jogging",
+          name: "超慢跑",
+          caloriePerMin: 5.5,
+          intensity: "low-moderate",
+          suitableAges: ["13-18", "19-45", "46-65", "65+"],
+          benefits: ["低冲击持久运动", "减压放松", "适合体能较弱者"],
+          tips: "保持能说话的速度，小步轻落地，避免追求速度。"
         }
       ],
-      
-      // 力量训练类
       strength: [
         { 
           id: "bodyweight",
@@ -599,8 +686,6 @@
           examples: ["弹力带划船", "外旋练习"]
         }
       ],
-      
-      // 柔韧性类
       flexibility: [
         { 
           id: "stretching",
@@ -609,7 +694,7 @@
           intensity: "low",
           suitableAges: ["7-12", "13-18", "19-45", "46-65", "65+"],
           benefits: ["增加关节活动度", "预防受伤", "促进恢复"],
-          tips: "每个动作保持15-30秒，感觉轻微拉伸感"
+          tips: "每个动作保持15-30秒，感觉轻微拉伸感。"
         },
         { 
           id: "yoga",
@@ -618,7 +703,7 @@
           intensity: "low-moderate",
           suitableAges: ["13-18", "19-45", "46-65", "65+"],
           benefits: ["改善平衡", "身心连接", "核心力量"],
-          tips: "从基础姿势开始，关注呼吸而不是动作深度"
+          tips: "从基础姿势开始，关注呼吸而不是动作深度。"
         },
         { 
           id: "tai_chi",
@@ -627,7 +712,7 @@
           intensity: "low",
           suitableAges: ["46-65", "65+"],
           benefits: ["提高平衡能力", "精神专注", "改善姿势"],
-          tips: "保持缓慢平稳的节奏，膝盖微屈避免过度伸展"
+          tips: "保持缓慢平稳的节奏，膝盖微屈避免过度伸展。"
         }
       ]
     };
@@ -636,7 +721,7 @@
     const ageRecommendations = {
       "3-6": {
         focus: ["aerobic", "flexibility"],
-        dailyMinutes: 60-180,
+        dailyMinutes: 120,
         intensity: "playful"
       },
       "7-12": {
@@ -651,12 +736,12 @@
       },
       "19-45": {
         focus: ["aerobic", "strength", "flexibility"],
-        dailyMinutes: 30,
+        dailyMinutes: 40,
         intensity: "moderate"
       },
       "46-65": {
         focus: ["aerobic", "flexibility"],
-        dailyMinutes: 30,
+        dailyMinutes: 35,
         intensity: "moderate",
         precautions: "避免高冲击活动"
       },
@@ -706,7 +791,6 @@
     };
 
     // UI元素
-    const form = document.getElementById('trackForm');
     const exerciseContainer = document.getElementById('exerciseRecommendation');
     const calculateBtn = document.getElementById('calculatePlan');
     const ageRangeSelect = document.getElementById('ageRange');
@@ -718,6 +802,21 @@
     const specialArea = document.getElementById('specialArea');
     const specialRecommendations = document.getElementById('specialRecommendations');
     const exerciseSummary = document.getElementById('exerciseSummary');
+
+    // 确定性选择算法
+    function deterministicSelection(availableExercises, seed) {
+      // 创建唯一哈希值
+      const seedStr = JSON.stringify(seed);
+      let hash = 0;
+      for (let i = 0; i < seedStr.length; i++) {
+        hash = ((hash << 5) - hash) + seedStr.charCodeAt(i);
+        hash |= 0;
+      }
+      
+      // 确保索引在有效范围内
+      const index = Math.abs(hash) % availableExercises.length;
+      return availableExercises[index];
+    }
 
     // 生成运动计划
     function generateExercisePlan() {
@@ -756,22 +855,22 @@
       const ageRec = ageRecommendations[settings.ageRange];
       const goalRec = goalAdjustments[settings.goal];
       
-      // 计算总时间
-      let totalMinutes;
+      // 计算每日总时间
+      let dailyTotalMinutes;
       switch(settings.timePref) {
-        case "short": totalMinutes = 20; break;
-        case "long": totalMinutes = 80; break;
-        default: totalMinutes = 45;
+        case "short": dailyTotalMinutes = 20; break;
+        case "long": dailyTotalMinutes = 80; break;
+        default: dailyTotalMinutes = 45;
       }
       
       // 计算每周总分钟数
       const days = parseInt(settings.daysAvail.split('-')[0]) || 3;
-      const weeklyTotal = totalMinutes * days;
+      const weeklyTotal = dailyTotalMinutes * days;
       
-      // 计算分类分钟数
+      // 计算每日各分类分钟数
       const typeRatios = {};
       Object.keys(goalRec.ratio).forEach(type => {
-        typeRatios[type] = Math.round(weeklyTotal * (goalRec.ratio[type]/100));
+        typeRatios[type] = Math.round(dailyTotalMinutes * (goalRec.ratio[type]/100));
       });
       
       // 选择适合的练习
@@ -788,20 +887,23 @@
         );
         
         if (availableExercises.length > 0) {
-          // 选择一个该类型推荐的练习
+          // 使用确定性选择算法选择运动
           selectedExercises[type] = {
             type: type,
-            exercise: availableExercises[Math.floor(Math.random() * availableExercises.length)],
-            weeklyMinutes: typeRatios[type],
-            sessions: days
+            exercise: deterministicSelection(availableExercises, settings),
+            dailyMinutes: typeRatios[type]
           };
         }
       });
       
+      // 计算每日总计
+      const dailyTotal = Object.values(selectedExercises).reduce((sum, ex) => sum + ex.dailyMinutes, 0);
+      
       return {
+        dailyTotal: dailyTotal,
         weeklyTotal: weeklyTotal,
         days: days,
-        exercises: selectedExercises
+        dailyExercises: selectedExercises
       };
     }
 
@@ -809,50 +911,86 @@
     function displayRecommendations(recommendations) {
       let htmlContent = "";
       
-      // 按类别分组
-      const categories = {
-        aerobic: [],
-        strength: [],
-        flexibility: []
-      };
+      // 显示每日计划
+      htmlContent += `
+        <div class="daily-plan-box">
+          <div class="daily-plan-header">
+            <i class="icon">📅</i>每日运动安排 (共${recommendations.days}天/周)
+          </div>
+      `;
       
-      Object.values(recommendations.exercises).forEach(rec => {
-        categories[rec.type].push(rec);
+      // 显示每日具体运动安排
+      Object.values(recommendations.dailyExercises).forEach(rec => {
+        const typeIcon = {
+          aerobic: "🏃‍♂️",
+          strength: "💪",
+          flexibility: "🧘‍♀️"
+        }[rec.type];
+        
+        const typeClass = {
+          aerobic: "aerobic",
+          strength: "strength",
+          flexibility: "flexibility"
+        }[rec.type];
+        
+        htmlContent += `
+          <div class="daily-exercise-item">
+            <div>
+              <span class="exercise-type ${typeClass}">${typeIcon}</span>
+              <span>${rec.exercise.name}</span>
+            </div>
+            <div>
+              <strong>${rec.dailyMinutes}</strong> 分钟
+            </div>
+          </div>
+        `;
       });
       
-      // 显示每个分类
-      Object.keys(categories).forEach(category => {
-        const categoryExercises = categories[category];
-        if (categoryExercises.length > 0) {
-          categoryExercises.forEach(exRec => {
-            const ex = exRec.exercise;
-            
-            htmlContent += `
-              <div class="exercise-card">
-                <div class="exercise-header">${ex.name}</div>
-                <div class="exercise-body">
-                  <div class="exercise-details">
-                    <div class="detail-item">
-                      <i class="icon">⏱️</i>每周${exRec.weeklyMinutes}分钟<br>
-                      <small>分${exRec.sessions}次进行</small>
-                    </div>
-                    <div class="detail-item">
-                      <i class="icon">🔥</i>卡路里估算<br>
-                      <small>约${Math.round(ex.caloriePerMin * exRec.weeklyMinutes)}大卡/周</small>
-                    </div>
-                  </div>
-                  
-                  <div class="exercise-benefits">
-                    <strong><i class="icon">💪</i>主要效益:</strong> ${ex.benefits.join('、')}
-                  </div>
-                  
-                  ${ex.tips ? `<div class="recommendation"><i class="icon">💡</i>建议: ${ex.tips}</div>` : ''}
-                  ${ex.examples ? `<div class="recommendation"><i class="icon">📋</i>练习示例: ${ex.examples.join('、')}</div>` : ''}
+      // 添加每日总计
+      htmlContent += `
+        <div class="daily-total">
+          <span>每日总时长</span>
+          <span>${recommendations.dailyTotal}分钟</span>
+        </div>
+      `;
+      
+      htmlContent += `</div>`; // 结束每日计划盒子
+      
+      // 显示各项运动详情
+      const typeNames = {
+        aerobic: "有氧运动",
+        strength: "力量训练",
+        flexibility: "柔韧性"
+      };
+      
+      Object.values(recommendations.dailyExercises).forEach(rec => {
+        const ex = rec.exercise;
+        const weeklyMinutes = rec.dailyMinutes * recommendations.days;
+        
+        htmlContent += `
+          <div class="exercise-card">
+            <div class="exercise-header">${ex.name} <span style="font-size: 14px; opacity: 0.8;">(${typeNames[rec.type]})</span></div>
+            <div class="exercise-body">
+              <div class="exercise-details">
+                <div class="detail-item">
+                  <i class="icon">⏱️</i>每周${weeklyMinutes}分钟<br>
+                  <small>分${recommendations.days}次进行</small>
+                </div>
+                <div class="detail-item">
+                  <i class="icon">🔥</i>卡路里估算<br>
+                  <small>约${Math.round(ex.caloriePerMin * weeklyMinutes)}大卡/周</small>
                 </div>
               </div>
-            `;
-          });
-        }
+              
+              <div class="exercise-benefits">
+                <strong><i class="icon">💪</i>主要效益:</strong> ${ex.benefits.join('、')}
+              </div>
+              
+              ${ex.tips ? `<div class="recommendation"><i class="icon">💡</i>建议: ${ex.tips}</div>` : ''}
+              ${ex.examples ? `<div class="recommendation"><i class="icon">📋</i>练习示例: ${ex.examples.join('、')}</div>` : ''}
+            </div>
+          </div>
+        `;
       });
       
       exerciseContainer.innerHTML = htmlContent;
@@ -923,33 +1061,11 @@
           <span>每周运动天数</span>
           <span><strong>${recommendations.days}天</strong></span>
         </li>
+        <li>
+          <span>每日运动时长</span>
+          <span><strong>${recommendations.dailyTotal}分钟</strong></span>
+        </li>
       `;
-      
-      // 各类运动时长
-      const typeTotals = {};
-      
-      Object.values(recommendations.exercises).forEach(rec => {
-        if (!typeTotals[rec.type]) {
-          typeTotals[rec.type] = 0;
-        }
-        typeTotals[rec.type] += rec.weeklyMinutes;
-      });
-      
-      // 运动类型中文名称
-      const typeNames = {
-        aerobic: "有氧运动",
-        strength: "力量训练",
-        flexibility: "柔韧性"
-      };
-      
-      Object.keys(typeTotals).forEach(type => {
-        htmlContent += `
-          <li>
-            <span>${typeNames[type]}时长</span>
-            <span><strong>${typeTotals[type]}分钟/周</strong></span>
-          </li>
-        `;
-      });
       
       exerciseSummary.innerHTML = htmlContent;
     }
