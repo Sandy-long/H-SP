@@ -518,10 +518,13 @@
           <label for="goalType"><i class="icon">🎯</i>运动目标:</label>
           <select id="goalType">
             <option value="health">保持健康</option>
-            <option value="weight_loss" selected>减肥/塑形</option>
+            <option value="weight_loss" selected>减脂/塑形</option>
             <option value="muscle_gain">增肌/力量</option>
-            <option value="endurance">提高耐力</option>
-            <option value="flexibility">柔韧性改善</option>
+            <option value="endurance">提升心肺功能</option>
+            <option value="flexibility">提高柔韧性</option>
+            <option value="performance">提升运动表现(（速度、力量、耐力）)</option>
+            <option value="recovery">康复训练</option>
+            <option value="relaxation">放松减压</option>
           </select>
         </div>
         
@@ -584,6 +587,51 @@
     // 运动数据库
     const exerciseDatabase = {
       aerobic: [
+	   { 
+          id: "basketball",
+          name: "篮球", 
+          caloriePerMin: 8.5,
+          intensity: "high",
+          suitableAges: ["13-18", "19-45"],
+          benefits: ["提升爆发力", "增强协作能力", "改善协调性"],
+          tips: "注意正确的起跳和落地姿势保护膝盖，穿着高帮球鞋防止脚踝扭伤。"
+        },
+        { 
+          id: "soccer",
+          name: "足球", 
+          caloriePerMin: 9.2,
+          intensity: "high",
+          suitableAges: ["13-18", "19-45"],
+          benefits: ["提高心肺耐力", "增强下肢力量", "培养团队精神"],
+          tips: "定期更换不同方向的跑动避免单一侧肌肉过载，穿着合适的防滑球鞋。"
+        },
+        { 
+          id: "tennis",
+          name: "网球", 
+          caloriePerMin: 7.3,
+          intensity: "moderate-high",
+          suitableAges: ["13-18", "19-45", "46-65"],
+          benefits: ["提升反应速度", "增强上肢力量", "改善手眼协调"],
+          tips: "挥拍时全身协调发力而非仅用手臂，注意手腕动作保护肘关节。"
+        },
+        { 
+          id: "skating",
+          name: "轮滑", 
+          caloriePerMin: 7.0,
+          intensity: "moderate",
+          suitableAges: ["13-18", "19-45"],
+          benefits: ["低冲击有氧运动", "提升平衡能力", "增强下肢力量"],
+          tips: "佩戴全套护具（头盔、护膝、护肘、护腕），在平坦路面练习基础滑行。"
+        },
+        { 
+          id: "skateboarding",
+          name: "滑板", 
+          caloriePerMin: 6.8,
+          intensity: "moderate",
+          suitableAges: ["13-18", "19-45"],
+          benefits: ["提高平衡能力", "增强核心力量", "发展协调性"],
+          tips: "从基础滑行开始，逐步学习技巧，始终佩戴防护装备。"
+        },
         { 
           id: "walking",
           name: "快走", 
@@ -713,10 +761,15 @@
           suitableAges: ["46-65", "65+"],
           benefits: ["提高平衡能力", "精神专注", "改善姿势"],
           tips: "保持缓慢平稳的节奏，膝盖微屈避免过度伸展。"
+		  
         }
       ]
     };
-
+	
+	
+	
+	
+	
     // 年龄推荐设置
     const ageRecommendations = {
       "3-6": {
@@ -755,7 +808,17 @@
 
     // 目标设置权重
     const goalAdjustments = {
-      "health": {
+      "performance": {
+        ratio: { aerobic: 50, strength: 30, flexibility: 20 }
+      },
+      "recovery": {
+        ratio: { aerobic: 40, strength: 20, flexibility: 40 }
+      },
+      "relaxation": {
+        ratio: { aerobic: 30, strength: 10, flexibility: 60 }
+      },
+	  
+	  "health": {
         ratio: { aerobic: 50, strength: 20, flexibility: 30 }
       },
       "weight_loss": {
